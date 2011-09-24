@@ -1,0 +1,14 @@
+{
+	"name": "twitter",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"mongoose": ">= 2.2.0",
+		"supervisor": ">= 0.1.2",
+		"underscore": ">= 1.1.7",
+		"deferred": ">= 0.2.4",
+		"csv": ">= 0.0.10",
+		"connect": ">= 1.7.1",
+		"restify": "<= 0.4.5"
+	}
+}
