@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,11 +20,26 @@
 		<p class="author">by DevMeetings (Piotrek Koszuliński; @reinmarpl; http://code42.pl)</p>
 	</header>
 
-	<section class="slide" id="csjs-vs-ssjs-1">
+	<section class="slide">
+		<h1>Wielki nieobecny</h1>
+		<img src="imgs/IMG_2777.jpg" alt="D">
+	</section>
+
+	<section class="slide">
+		<h1>Wielki nieobecny</h1>
+		<img src="imgs/IMG_2777_d.jpg" alt="D">
+	</section>
+
+	<section class="slide">
+		<h1>Organizatorzy</h1>
+		<img src="imgs/IMG_2777_o.jpg" alt="O">
+	</section>
+
+	<section class="slide">
 		<h1>CSJS vs SSJS</h1>
 	</section>
 
-	<section class="slide" id="csjs-1">
+	<section class="slide">
 		<h2>Client-side JavaScript</h2>
 		<ul>
 			<li>synchroniczne API</li>
@@ -41,10 +55,11 @@
 			</li>
 			<li>BOM i DOM</li>
 			<li><code>window === this</code></li>
+			<li><code>this.test = 1; test; //-&gt; 1</code></li>
 		</ul>
 	</section>
 
-	<section class="slide" id="ssjs-1">
+	<section class="slide">
 		<h2>Server-side JavaScript (w NodeJS)</h2>
 		<ul>
 			<li><strong>a</strong>synchroniczne API</li>
@@ -56,12 +71,13 @@
 			</li>
 			<li>czysty global</li>
 			<li><code>global !== this</code></li>
+			<li><code>this.test = 1; test; // -&gt; Reference error</code> (uwaga na testowanie w konsoli Node'a)</li>
 		</ul>
 	</section>
 
 	<section class="slide">
 		<h2>Asynchroniczna pułapka</h2>
-		<h3>Złap errora &ndash; <code>def</code>, czy <code>call</code>?</h3>
+		<h3>Złap errora &ndash; <code>def</code> czy <code>call</code>?</h3>
 <pre>try {
     var fn = function () {
         throw new Error();
@@ -81,7 +97,7 @@ catch (e) {
 
 	<section class="slide">
 		<h2>Asynchroniczna pułapka</h2>
-		<h3>Złap errora &ndash; <code>def</code>, czy <code>call</code>?</h3>
+		<h3>Złap errora &ndash; <code>def</code> czy <code>call</code>?</h3>
 
 		<p><img src="imgs/IMG_2559.jpg" alt="Facepalm by David" width="600"></p>
 
@@ -91,7 +107,18 @@ catch (e) {
 		</ul>
 	</section>
 
-	<section class="slide" id="async-1">
+	<section class="slide">
+		<h2>Asynchroniczna pułapka</h2>
+		<h3>Złap errora &ndash; nie tak, to jak?</h3>
+		
+		<div class="slide">
+<pre>process.on('uncaughtException', function (err) {
+    console.log('ups', err);
+});</pre>
+		</div>
+	</section>
+
+	<section class="slide">
 		<h2>Asynchroniczna pułapka</h2>
 		<h3>Typowy przypadek</h3>
 <pre>app.get('/post/:title', function (req, res) {
@@ -115,11 +142,11 @@ catch (e) {
 		<h2>Asynchroniczna pułapka cz.2.</h2>
 		<h3>Konkatenacja plików w katalogu</h3>
 		<ol>
-			<li class="slide">odczytanie listy plików w katalogu</li>
-			<li class="slide">odczytanie zawartości każdego z plików</li>
-			<li class="slide"><strong>synchronizacja!</strong></li>
-			<li class="slide">połączenie zawartości</li>
-			<li class="slide">zapisanie pliku wynikowego</li>
+			<li>odczytanie listy plików w katalogu</li>
+			<li>odczytanie zawartości każdego z plików</li>
+			<li><strong>synchronizacja!</strong></li>
+			<li>połączenie zawartości</li>
+			<li>zapisanie pliku wynikowego</li>
 		</ol>
 	</section>
 
@@ -151,11 +178,11 @@ catch (e) {
 	<section class="slide">
 		<h2>A można łatwiej?</h2>
 		<h3>A zgadnij</h3>
-		<ul>
-			<li class="slide">https://github.com/caolan/async</li>
-			<li class="slide">https://github.com/medikoo/deferred</li>
+		<ul class="slide">
+			<li>https://github.com/caolan/async</li>
+			<li>https://github.com/medikoo/deferred</li>
 		</ul>
-		<p class="slide">Jeszcze?</p>
+		<p class="slide">Więcej:</p>
 		<ul class="slide">
 			<li>https://github.com/kriskowal/q</li>
 			<li>https://github.com/creationix/step</li>
@@ -170,10 +197,10 @@ catch (e) {
 	<section class="slide">
 		<h2>Async</h2>
 		<ul>
-			<li class="slide"><code>series(tasks, [callback])</code> &ndash; Run an array of functions in series, each one running once the previous function has completed.</li>
-			<li class="slide"><code>parallel(tasks, [callback])</code> &ndash; Run an array of functions in parallel, without waiting until the previous function has completed.</li>
-			<li class="slide"><code>waterfall(tasks, [callback])</code> &ndash; Runs an array of functions in series, each passing their results to the next in the array.</li>
-			<li class="slide">i wiele innych</li>
+			<li><code>series(tasks, [callback])</code> &ndash; Run an array of functions in series, each one running once the previous function has completed.</li>
+			<li><code>parallel(tasks, [callback])</code> &ndash; Run an array of functions in parallel, without waiting until the previous function has completed.</li>
+			<li><code>waterfall(tasks, [callback])</code> &ndash; Runs an array of functions in series, each passing their results to the next in the array.</li>
+			<li>i wiele innych</li>
 		</ul>
 	</section>
 
@@ -225,9 +252,9 @@ catch (e) {
 
 oneOneSecondLater(function (v) { console.log(v); });</pre>
 		
-		<ul>
-			<li class="slide">musimy zagnieżdżać wywołania</li>
-			<li class="slide">nie możemy przekazać "stanu odroczenia" jako wartości</li>
+		<ul class="slide">
+			<li>musimy zagnieżdżać wywołania</li>
+			<li>nie możemy przekazać "stanu odroczenia" jako wartości</li>
 		</ul>
 	</section>
 
@@ -254,7 +281,7 @@ maybeOneOneSecondLater().then(function (v) {
 
 		<ul>
 			<li class="slide">lepiej!</li>
-			<li class="slide">ale to dopiero początek</li>
+			<li class="slide">i to dopiero początek</li>
 		</ul>
 	</section>
 
@@ -301,10 +328,9 @@ oneOneSecondLater().then(callback);</pre>
 		<h2>Deferred i promise'y</h2>
 		<h3>Deferred by Medikoo</h3>
 		<ul>
-			<li class="slide">https://github.com/medikoo/deferred</li>
+			<li>https://github.com/medikoo/deferred</li>
 			<li class="slide">made in Poland</li>
 			<li class="slide">zainspirowany przez implementację Krisa Kowala i innych</li>
-			<li class="slide">sam miód</li>
 			<li class="slide">ciekawie współpracuje z es5-ext (https://github.com/medikoo/es5-ext)</li>
 			<li class="slide">kod wykorzystujący deferred i es5-ext przestaje przypominać JavaScript (to plus, czy minus?)</li>
 			<li class="slide">
@@ -494,18 +520,18 @@ a2p(fs.readFile, __filename, 'utf-8')
 	<section class="slide">
 		<h2>Async czy deferred?</h2>
 		<ul>
-			<li>Async
+			<li class="slide">Async
 				<ul>
-					<li class="slide">łatwiej pojąć</li>
-					<li class="slide">pasuje w każdym przypadku</li>
+					<li>łatwiej pojąć</li>
+					<li>pasuje w każdym przypadku</li>
 				</ul>
 			</li>
 			<li class="slide">deferred
 				<ul>
-					<li class="slide">ma większe możliwości (stan jako wartość)</li>
-					<li class="slide">lepiej działa jeśli jest szeroko wykorzystywany</li>
-					<li class="slide">trzeba się do niego przyzwyczaić</li>
-					<li class="slide">duży wybór implementacji</li>
+					<li>ma większe możliwości (stan jako wartość)</li>
+					<li>lepiej działa jeśli jest szeroko wykorzystywany</li>
+					<li>trzeba się do niego przyzwyczaić</li>
+					<li>duży wybór implementacji</li>
 				</ul>
 			</li>
 		</ul>
@@ -542,7 +568,7 @@ Error: Ratunku
 			<li class="slide">przydatny niestandardowy dodatek: <code>modules.exports</code></li>
 			<li class="slide">św. Graal programistów JS</li>
 				<ul>
-					<li class="slide">zabezpieczenie globalnego scope'a (<code>global !== this</code>)</li>
+					<li class="slide">zabezpieczenie globalnego scope'a (<code>global !== this</code> i osobne scope'y)</li>
 					<li class="slide">łatwy import potrzebnych modułów</li>
 					<li class="slide">hermetyzacja i czytelne publiczne API modułów</li>
 					<li class="slide">jednolity standard &ndash; od dzisiaj każdy pisze tak samo</li>
@@ -600,10 +626,10 @@ inc(a); // 2</pre>
 			</li>
 			<li class="slide">globalna instalacja modułów w npm:
 				<ol>
-					<li class="slide"><code>sudo npm install -g async</code></li>
-					<li class="slide">moduł ląduje w: <code>/usr/local/lib/node_modules/</code></li>
-					<li class="slide"><code>cd ~ && ln -s /usr/local/lib/node_modules .node_modules</code></li>
-					<li class="slide">tadam! instalujemy moduły raz a dobrze</li>
+					<li><code>sudo npm install -g async</code></li>
+					<li>moduł ląduje w: <code>/usr/local/lib/node_modules/</code></li>
+					<li><code>cd ~ && ln -s /usr/local/lib/node_modules .node_modules</code></li>
+					<li>tadam! instalujemy moduły raz a dobrze</li>
 				</ol>
 			</li>
 		</ul>
@@ -620,13 +646,13 @@ function (exports, module, require) {
 
 exports; // publiczne API modułu</pre>
 	
-		<ul>
-			<li class="slide">i wszystko jasne</li>
-			<li class="slide">a więc sportujmy moduły do CSJS! opakujemy pliki jak wyżej i gotowe</li>
-			<li class="slide">dwie przeszkody:</li>
+		<ul class="slide">
+			<li>i wszystko jasne</li>
+			<li>a więc sportujmy moduły do CSJS! opakujemy pliki jak wyżej i gotowe</li>
+			<li>dwie przeszkody:</li>
 				<ul>
-					<li class="slide">synchroniczny <code>require</code> &ndash; odpada dynamiczne ładowanie skryptów</li>
-					<li class="slide">konkatenacja skryptów i tak jest nieunikniona &ndash; modułowy kod serwerowy jest o wiele bardziej ziarnisty</li>
+					<li>synchroniczny <code>require</code> &ndash; odpada dynamiczne ładowanie skryptów</li>
+					<li>konkatenacja skryptów i tak jest nieunikniona &ndash; ziarnistość kodu modułowego</li>
 				</ul>
 			</li>
 		</ul>
@@ -681,9 +707,9 @@ exports; // publiczne API modułu</pre>
 			<li class="slide">sprawdzone przeze mnie rozwiązania są ubogie i toporne</li>
 			<li class="slide">implementacja CommonJS w CSJS nie jest trywialna</li>
 			<li class="slide">trwają prace nad AMD i modułami natywnymi (w ECMAScript Harmony &ndash; http://wiki.ecmascript.org/doku.php?id=harmony:modules)</li>
-			<li class="slide">żadne ze specyfikacji nie wydaje się być ze sobą zgodne</li>
+			<li class="slide">żadne ze specyfikacji nie wydają się być ze sobą zgodne</li>
 			<li class="slide">składnia w Harmony: <code>module math { export x }</code></li>
-			<li class="slide">jak napisać polyfilla dla tej składni?</li>
+			<li class="slide">jak napisać polyfilla?</li>
 			<li class="slide">jeszcze długo przyjdzie nam poczekać...</li>
 			<li class="slide">bonus: https://github.com/jbrantly/yabble i https://github.com/codespeaks/modulr</li>
 		</ul>
@@ -693,10 +719,10 @@ exports; // publiczne API modułu</pre>
 		<h2>CSJS @ SSJS</h2>
 		<ul>
 			<li>załóżmy, że mamy kod CSJS</li>
-			<li class="slide">chcemy go wykonać na serwerze</li>
-			<li class="slide">kod ten korzysta z DOM-a i BOM-a jako globali</li>
-			<li class="slide">sam też tworzy dużo globali</li>
-			<li class="slide">chcemy go uruchomić w Nodzie</li>
+			<li>chcemy go wykonać na serwerze</li>
+			<li>kod ten korzysta z DOM-a i BOM-a jako globali</li>
+			<li>sam też tworzy dużo globali</li>
+			<li>chcemy go uruchomić w Nodzie</li>
 			<li class="slide">JSDOM &ndash; serwerowa implementacja DOM-a i BOM-a (https://github.com/tmpvar/jsdom)</li>
 			<li class="slide">node'owy moduł VM &ndash; piaskownica dla skryptów (http://nodejs.org/docs/v0.5.7/api/vm.html#vm.runInContext)</li>
 			<li class="slide">uwaga: pełna dokumentacja jest dostępna tylko dla wersji 0.5.x, ale działa również z 0.4.x</li>
@@ -746,7 +772,7 @@ window.run('console.log(document.innerHTML);');
 			<li class="slide">idea promowana przez Kyle'a Simpsona</li>
 			<li class="slide">warstwa pośrednicząca pomiędzy backendem i frontendem</li>
 			<li class="slide">skupiająca wspólne zadania i dwukierunkową komunikację</li>
-			<li class="slide">ktoś coś rozumie? ja nie...</li>
+			<li class="slide">ktoś coś rozumie? bo ja nie...</li>
 		</ul>
 	</section>
 
@@ -754,29 +780,103 @@ window.run('console.log(document.innerHTML);');
 		<h2>Middle-end</h2>
 		<h3>Zostawmy Kyle'a w spokoju</h3>
 		<ul>
-			<li class="slide">założenia (co mamy, bądź chcmemy mieć):
+			<li class="slide">jak rozumiem middle-end?</li>
+			<ul>
+				<li class="slide">kierowanie się zasadą DRY przez wydzielenie wspólnego mianownika z backendu i frontendu</li>
+				<li class="slide">wydzielenie warstwy równo związanej z backendem jak i frontendem</li>
+			</ul>
+			<li class="slide">zastosowania:
 				<ul>
-					<li class="slide">dynamiczna aplikacja webowa</li>
-					<li class="slide">wysoka responsywność</li>
-					<li class="slide">minimum komunikacji klient-serwer</li>
-					<li class="slide">walidacja po stronie klienta</li>
-					<li class="slide">template'y po stronie klienta</li>
-					<li class="slide">coś jeszcze?</li>
+					<li>wspólne systemy szablonów</li>
+					<li>wspólny routing</li>
+					<li>wspólna walidacja</li>
+					<li>formatowanie danych</li>
+					<li>pakowanie (konkatenacja, minifikacja)</li>
+					<li>cache (po stronie klienta, bądź serwera)</li>
+					<li>...</li>
 				</ul>
 			</li>
-			<li class="slide">co chcemy osiągnąć?
-				<ul>
-					<li class="slide">DRY... <span class="slide">DRY...</span> <span class="slide">DRY...</span></li>
-				</ul>	
-			</li>
-			<li class="slide">czego nie chcemy?
-				<ul>
-					<li class="slide">wpasować się w istniejącego kolosa &ndash; to indywidualne przypadki</li>
-					<li class="slide">powtarzać się</li>
-				</ul>	
-			</li>
-
 		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Zadania</h2>
+		<h3>System template'owy</h3>
+		<ul>
+			<li>przenośny i dynamiczny (po stronie klienta) system template'owy</li>
+			<li>JSON na wejściu, HTML na wyjściu</li>
+			<li>na serwerze renderujemy od zera, na kliencie wpasowujemy się w podstawowy szablon</li>
+			<li>zmiana danych =&gt; uktualizujemy tylko elementy zależne (widgety? eventy na JSON-owych danych?)</li>
+			<li>moja propozycja:</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Zadania</h2>
+		<h3>Routing</h3>
+		<ul>
+			<li>przenośny system kontrolerów</li>
+			<li>API do definicji akcji (np. à la Express <code>app.get, app.post</code>)</li>
+			<li>na kliencie adapter oparty o <code>pushState()</code></li>
+			<li>na serwerze adapter wpięty np. do Connecta jako middleware</li>
+			<li>na kliencie przechwytywanie odpowiednich eventów</li>
+			<li>parsowanie URL-i, obiekty <code>request, response</code></li>
+			<li>moja propozycja:</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Zadania</h2>
+		<h3>Proxy v1</h3>
+		<ul>
+			<li>przezroczyste dla klienta i serwera</li>
+			<li>operujące na kodzie HTML wyrenderowanej strony</li>
+			<li>wykonujące jedną/kilka z czynności:
+				<ul>
+					<li>zamiana wszystkich linków na skrócone z bit.ly</li>
+					<li>zamiana wszystkich numerów telefonów na widgety Skype'a</li>
+					<li>dodawanie do wszystkich adresów linków do Google Mapsów</li>
+					<li>i18n &ndash; wychodzący kod HTML zawiera specjalne znaczniki, podmieniane przez proxy według słowników (Google Translate, bądź statyczne-prywatne)</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Zadania</h2>
+		<h3>Proxy v2</h3>
+		<ul>
+			<li>przezroczyste dla klienta i serwera</li>
+			<li>operujące na wygenerowanej stronie (HTML, CSS, JS)</li>
+			<li>konkatenujące i minifikujące CSS-y i JS-y (dla uproszczenia np. tylko w <code>&lt;head&gt;</code>)</li>
+			<li>cache'ujące wyniki pracy</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Zadania</h2>
+		<h3>Proxy v3</h3>
+		<ul>
+			<li>przezroczyste dla klienta i serwera</li>
+			<li>optymalizacja dla mobile'ów</li>
+			<li>skalowanie i zmniejszanie jakości grafik</li>
+			<li>wywalenie flashy</li>
+			<li>coś jeszcze?</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Zadania</h2>
+		<h3>Inne (może ciekawe)</h3>
+		<ul>
+			<li>walidacja, sesja, autoryzacja</li>
+			<li>cache po stronie klienta &ndash; np. proxy cache'ujące wychodzące Ajaksowe zapytania</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h1>Do roboty!</h1>
+		<img src="imgs/IMG_2772.jpg" alt="fight!" width="600">
 	</section>
 
 	<!--
